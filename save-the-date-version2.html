@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Save the Date — Alexandra & Athanasios · 17 July 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&family=Cinzel:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel+Decorative:wght@400&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ivory:        #F8EFE5;
+    --aegean:       #5D768B;
+    --cycladic:     #A8BCC6;
+    --navy:         #1A3E6E;
+    --gold:         #C4973F;
+    --gold-pale:    rgba(196,151,63,0.3);
+    --sand:         #C8B39B;
+    --serif:        'Cormorant Garamond', Georgia, serif;
+    --roman:        'Cinzel', serif;
+    --calligraphy:  'Monsieur La Doulaise', cursive;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    width: 100%; height: 100%;
+    overflow: hidden;
+    background: var(--ivory);
+  }
+
+  body {
+    font-family: var(--serif);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* ── Background texture ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%,   rgba(93,118,139,0.10) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 50% 100%,  rgba(93,118,139,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 0% 50%,    rgba(168,188,198,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 100% 50%,  rgba(168,188,198,0.07) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Decorative border frame ── */
+  .frame {
+    position: fixed;
+    inset: clamp(14px, 2vw, 26px);
+    pointer-events: none;
+    z-index: 10;
+  }
+  .frame svg { width: 100%; height: 100%; }
+
+  /* ── Page & card ── */
+  .page {
+    position: relative;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: clamp(30px, 5vw, 60px) clamp(20px, 4vw, 50px) clamp(16px, 3vw, 36px);
+    max-width: 96vw;
+    width: 100%;
+    gap: 0;
+  }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+  @keyframes goldShimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position:  200% center; }
+  }
+  @keyframes crестFade {
+    from { opacity: 0; transform: scale(0.96); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  .anim { opacity: 0; animation: fadeUp 1.1s cubic-bezier(.22,.61,.36,1) forwards; }
+  .anim-fade { opacity: 0; animation: fadeIn 1.4s ease forwards; }
+
+  /* ── STD label top ── */
+  .pre-label {
+    font-family: var(--roman);
+    font-size: clamp(7px, 0.8vw, 10px);
+    font-weight: 300;
+    letter-spacing: 0.62em;
+    text-transform: uppercase;
+    color: var(--aegean);
+    opacity: 0.7;
+    margin-bottom: clamp(8px, 1.4vw, 16px);
+  }
+
+  /* ── Big calligraphy ── */
+  .big-std {
+    font-family: var(--calligraphy);
+    font-size: clamp(50px, 8.5vw, 112px);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin-bottom: clamp(8px, 1.6vw, 20px);
+    background: linear-gradient(108deg, #7393B3 0%, #A8BCC6 28%, #F8EFE5 50%, #A8BCC6 72%, #5D768B 100%);
+    background-size: 220% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: goldShimmer 6s linear infinite, fadeUp 1.1s cubic-bezier(.22,.61,.36,1) 0.1s both;
+  }
+
+  /* ── Baroque crest ── */
+  .crest-wrap {
+    margin: clamp(6px, 1vw, 12px) 0 clamp(8px, 1.2vw, 14px);
+    opacity: 0;
+    animation: crestFade 1.4s ease 0.3s forwards;
+  }
+  .crest-wrap svg {
+    width: clamp(130px, 20vw, 240px);
+    height: auto;
+  }
+
+  /* ── Names ── */
+  .names-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin-bottom: clamp(8px, 1.4vw, 16px);
+  }
+  .name-script {
+    font-family: var(--calligraphy);
+    font-size: clamp(22px, 3.6vw, 48px);
+    font-weight: 400;
+    color: var(--navy);
+    line-height: 1.15;
+    letter-spacing: 0.02em;
+  }
+  .name-amp {
+    font-family: var(--calligraphy);
+    font-size: clamp(18px, 2.8vw, 34px);
+    color: var(--aegean);
+    line-height: 1;
+    margin: clamp(4px, 0.7vw, 8px) 0;
+    opacity: 0.8;
+  }
+
+  /* ── Floral divider ── */
+  .divider-wrap {
+    width: 100%;
+    max-width: 540px;
+    margin: clamp(8px, 1.4vw, 16px) 0;
+    opacity: 0.75;
+  }
+  .divider-wrap svg { width: 100%; height: auto; }
+
+  /* ── Date block ── */
+  .date-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(3px, 0.6vw, 7px);
+    margin-bottom: clamp(8px, 1.4vw, 16px);
+  }
+  .date-numerals {
+    font-family: var(--roman);
+    font-size: clamp(15px, 2vw, 26px);
+    font-weight: 400;
+    letter-spacing: 0.32em;
+    color: var(--aegean);
+    text-transform: uppercase;
+  }
+  .date-roman {
+    font-family: var(--serif);
+    font-size: clamp(10px, 1.1vw, 13px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--aegean);
+    letter-spacing: 0.18em;
+    opacity: 0.7;
+  }
+  .venue-name {
+    font-family: var(--roman);
+    font-size: clamp(8px, 0.95vw, 11px);
+    font-weight: 300;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-top: clamp(3px, 0.5vw, 6px);
+  }
+  .venue-name a {
+    color: var(--navy);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(93,118,139,0.3);
+    transition: border-color 0.3s;
+  }
+  .venue-name a:hover { border-color: var(--aegean); }
+  .venue-island {
+    font-family: var(--roman);
+    font-size: clamp(7px, 0.8vw, 10px);
+    font-weight: 300;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--aegean);
+    opacity: 0.65;
+    margin-top: clamp(1px, 0.3vw, 3px);
+  }
+
+  /* ── Friday note ── */
+  .friday-text {
+    font-family: var(--serif);
+    font-size: clamp(9px, 1vw, 12px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--navy);
+    letter-spacing: 0.04em;
+    line-height: 1.7;
+    max-width: 480px;
+    opacity: 0.8;
+    margin-bottom: clamp(8px, 1.4vw, 16px);
+  }
+
+  /* ── Countdown ── */
+  .countdown {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(10px, 2vw, 22px);
+    margin-bottom: clamp(10px, 1.8vw, 20px);
+  }
+  .cd-unit { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .cd-num {
+    font-family: var(--serif);
+    font-size: clamp(22px, 4vw, 48px);
+    font-weight: 300;
+    color: var(--aegean);
+    line-height: 1;
+    min-width: 2ch;
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+  .cd-label {
+    font-family: var(--roman);
+    font-size: clamp(6px, 0.7vw, 8px);
+    font-weight: 300;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: var(--aegean);
+    opacity: 0.65;
+  }
+  .cd-sep {
+    font-family: var(--serif);
+    font-size: clamp(18px, 3vw, 36px);
+    color: var(--cycladic);
+    opacity: 0.5;
+    padding-top: 3px;
+  }
+
+  /* ── Footer ── */
+  .footer-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(5px, 0.8vw, 9px);
+  }
+  .footer-note {
+    font-family: var(--roman);
+    font-size: clamp(7px, 0.8vw, 10px);
+    font-weight: 300;
+    letter-spacing: 0.46em;
+    text-transform: uppercase;
+    color: var(--aegean);
+    opacity: 0.65;
+    font-style: italic;
+  }
+  .travel-note {
+    font-family: var(--serif);
+    font-size: clamp(8px, 0.9vw, 11px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--navy);
+    letter-spacing: 0.03em;
+    line-height: 1.75;
+    max-width: 480px;
+    opacity: 0.75;
+    padding: clamp(7px, 1vw, 12px) clamp(12px, 2vw, 22px);
+    border-top: 1px solid rgba(93,118,139,0.22);
+  }
+  .travel-note a {
+    color: var(--aegean);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(93,118,139,0.35);
+    transition: opacity 0.3s;
+  }
+  .travel-note a:hover { opacity: 0.7; }
+  .rsvp-nudge {
+    font-family: var(--serif);
+    font-size: clamp(8px, 0.9vw, 11px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--navy);
+    letter-spacing: 0.03em;
+    opacity: 0.7;
+  }
+  .rsvp-nudge a {
+    color: var(--aegean);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(93,118,139,0.4);
+    transition: opacity 0.3s;
+  }
+  .rsvp-nudge a:hover { opacity: 0.7; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     BORDER FRAME — triple-line with Greek key corners
+     ══════════════════════════════════════════════ -->
+<div class="frame">
+  <svg viewBox="0 0 1000 1000" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Outer fine line -->
+    <rect x="10" y="10" width="980" height="980" rx="0" stroke="#5D768B" stroke-width="0.8" opacity="0.35"/>
+    <!-- Middle bold line -->
+    <rect x="18" y="18" width="964" height="964" rx="0" stroke="#5D768B" stroke-width="2.0" opacity="0.55"/>
+    <!-- Inner fine line -->
+    <rect x="26" y="26" width="948" height="948" rx="0" stroke="#5D768B" stroke-width="0.8" opacity="0.35"/>
+
+    <!-- Greek key corner ornaments — TOP LEFT -->
+    <polyline points="10,60 10,10 60,10" stroke="#5D768B" stroke-width="3.5" opacity="0.85" fill="none"/>
+    <polyline points="40,10 40,40 10,40" stroke="#5D768B" stroke-width="1.2" opacity="0.5" fill="none"/>
+    <!-- TOP RIGHT -->
+    <polyline points="940,10 990,10 990,60" stroke="#5D768B" stroke-width="3.5" opacity="0.85" fill="none"/>
+    <polyline points="990,40 960,40 960,10" stroke="#5D768B" stroke-width="1.2" opacity="0.5" fill="none"/>
+    <!-- BOTTOM LEFT -->
+    <polyline points="10,940 10,990 60,990" stroke="#5D768B" stroke-width="3.5" opacity="0.85" fill="none"/>
+    <polyline points="40,990 40,960 10,960" stroke="#5D768B" stroke-width="1.2" opacity="0.5" fill="none"/>
+    <!-- BOTTOM RIGHT -->
+    <polyline points="990,940 990,990 940,990" stroke="#5D768B" stroke-width="3.5" opacity="0.85" fill="none"/>
+    <polyline points="990,960 960,960 960,990" stroke="#5D768B" stroke-width="1.2" opacity="0.5" fill="none"/>
+
+    <!-- Mid-edge ornament diamonds — top -->
+    <polygon points="500,8 508,16 500,24 492,16" fill="#5D768B" opacity="0.45"/>
+    <!-- bottom -->
+    <polygon points="500,992 508,984 500,976 492,984" fill="#5D768B" opacity="0.45"/>
+    <!-- left -->
+    <polygon points="8,500 16,508 24,500 16,492" fill="#5D768B" opacity="0.45"/>
+    <!-- right -->
+    <polygon points="992,500 984,508 976,500 984,492" fill="#5D768B" opacity="0.45"/>
+
+    <!-- Inner corner micro dots -->
+    <circle cx="36" cy="36"  r="2.5" fill="#5D768B" opacity="0.4"/>
+    <circle cx="964" cy="36" r="2.5" fill="#5D768B" opacity="0.4"/>
+    <circle cx="36" cy="964" r="2.5" fill="#5D768B" opacity="0.4"/>
+    <circle cx="964" cy="964" r="2.5" fill="#5D768B" opacity="0.4"/>
+  </svg>
+</div>
+
+<!-- ══════════════════════════════════════════════  MAIN CARD  -->
+<div class="page">
+  <div class="card">
+
+    <!-- Pre-label -->
+    <p class="pre-label anim" style="animation-delay:0s">Alexandra &amp; Athanasios</p>
+
+    <!-- Big Save the Date -->
+    <h1 class="big-std">Save the Date</h1>
+
+    <!-- ═══ BAROQUE MONOGRAM CREST ═══ -->
+    <div class="crest-wrap">
+      <svg viewBox="0 0 340 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- ── Outer baroque frame scrollwork ── -->
+        <!-- TOP finial -->
+        <path d="M170,12 L165,22 Q160,30 154,34 Q146,40 148,50 Q150,58 158,60 Q166,62 170,56 Q174,62 182,60 Q190,58 192,50 Q194,40 186,34 Q180,30 175,22 Z" fill="#5D768B" opacity="0.7"/>
+        <circle cx="170" cy="8" r="4" fill="#5D768B" opacity="0.6"/>
+        <circle cx="162" cy="16" r="2.5" fill="#5D768B" opacity="0.4"/>
+        <circle cx="178" cy="16" r="2.5" fill="#5D768B" opacity="0.4"/>
+
+        <!-- LEFT upper scroll -->
+        <path d="M90,80 Q72,75 60,85 Q46,96 50,112 Q54,126 66,130 Q78,134 88,124 Q96,116 90,104 Q84,94 74,96 Q66,98 68,108 Q70,116 78,114" stroke="#5D768B" stroke-width="2.2" fill="none" opacity="0.75" stroke-linecap="round"/>
+        <!-- LEFT lower scroll -->
+        <path d="M80,200 Q62,195 52,210 Q40,226 46,242 Q52,256 66,258 Q78,260 86,250 Q94,240 88,228 Q82,218 72,220 Q64,222 66,232" stroke="#5D768B" stroke-width="2.2" fill="none" opacity="0.75" stroke-linecap="round"/>
+
+        <!-- RIGHT upper scroll -->
+        <path d="M250,80 Q268,75 280,85 Q294,96 290,112 Q286,126 274,130 Q262,134 252,124 Q244,116 250,104 Q256,94 266,96 Q274,98 272,108 Q270,116 262,114" stroke="#5D768B" stroke-width="2.2" fill="none" opacity="0.75" stroke-linecap="round"/>
+        <!-- RIGHT lower scroll -->
+        <path d="M260,200 Q278,195 288,210 Q300,226 294,242 Q288,256 274,258 Q262,260 254,250 Q246,240 252,228 Q258,218 268,220 Q276,222 274,232" stroke="#5D768B" stroke-width="2.2" fill="none" opacity="0.75" stroke-linecap="round"/>
+
+        <!-- LEFT acanthus leaves -->
+        <path d="M72,140 Q48,138 40,155 Q34,168 44,178 Q56,188 72,182 Q84,178 86,166 Q88,154 80,148 Q74,144 70,150 Q68,156 72,160" stroke="#5D768B" stroke-width="1.8" fill="none" opacity="0.65" stroke-linecap="round"/>
+        <path d="M60,152 Q44,150 40,162 Q38,172 46,178" stroke="#5D768B" stroke-width="1.4" fill="none" opacity="0.45" stroke-linecap="round"/>
+
+        <!-- RIGHT acanthus leaves -->
+        <path d="M268,140 Q292,138 300,155 Q306,168 296,178 Q284,188 268,182 Q256,178 254,166 Q252,154 260,148 Q266,144 270,150 Q272,156 268,160" stroke="#5D768B" stroke-width="1.8" fill="none" opacity="0.65" stroke-linecap="round"/>
+        <path d="M280,152 Q296,150 300,162 Q302,172 294,178" stroke="#5D768B" stroke-width="1.4" fill="none" opacity="0.45" stroke-linecap="round"/>
+
+        <!-- BOTTOM scrollwork -->
+        <path d="M170,310 Q150,316 138,308 Q124,298 128,284 Q132,270 144,266 Q156,262 166,272 Q172,280 168,290 Q164,298 154,296" stroke="#5D768B" stroke-width="2.0" fill="none" opacity="0.70" stroke-linecap="round"/>
+        <path d="M170,310 Q190,316 202,308 Q216,298 212,284 Q208,270 196,266 Q184,262 174,272 Q168,280 172,290 Q176,298 186,296" stroke="#5D768B" stroke-width="2.0" fill="none" opacity="0.70" stroke-linecap="round"/>
+        <!-- Bottom floret -->
+        <circle cx="170" cy="322" r="5" stroke="#5D768B" stroke-width="1.5" fill="none" opacity="0.55"/>
+        <circle cx="170" cy="322" r="2" fill="#5D768B" opacity="0.45"/>
+        <circle cx="158" cy="318" r="2.5" stroke="#5D768B" stroke-width="1.2" fill="none" opacity="0.4"/>
+        <circle cx="182" cy="318" r="2.5" stroke="#5D768B" stroke-width="1.2" fill="none" opacity="0.4"/>
+
+        <!-- SIDE connecting stems left -->
+        <path d="M80,80 Q74,100 72,120 Q70,140 72,160 Q72,180 74,200 Q76,220 76,240 Q76,260 80,280 Q84,296 90,308" stroke="#5D768B" stroke-width="1.5" fill="none" opacity="0.45" stroke-linecap="round" stroke-dasharray="none"/>
+        <!-- SIDE connecting stems right -->
+        <path d="M260,80 Q266,100 268,120 Q270,140 268,160 Q268,180 266,200 Q264,220 264,240 Q264,260 260,280 Q256,296 250,308" stroke="#5D768B" stroke-width="1.5" fill="none" opacity="0.45" stroke-linecap="round"/>
+
+        <!-- Small leaf pairs along stems — LEFT -->
+        <path d="M74,120 Q60,116 58,126 Q56,136 68,136" stroke="#5D768B" stroke-width="1.2" fill="none" opacity="0.4" stroke-linecap="round"/>
+        <path d="M72,220 Q58,216 56,226 Q54,236 66,236" stroke="#5D768B" stroke-width="1.2" fill="none" opacity="0.4" stroke-linecap="round"/>
+        <!-- Small leaf pairs along stems — RIGHT -->
+        <path d="M266,120 Q280,116 282,126 Q284,136 272,136" stroke="#5D768B" stroke-width="1.2" fill="none" opacity="0.4" stroke-linecap="round"/>
+        <path d="M268,220 Q282,216 284,226 Q286,236 274,236" stroke="#5D768B" stroke-width="1.2" fill="none" opacity="0.4" stroke-linecap="round"/>
+
+        <!-- ── Inner oval shield ── -->
+        <ellipse cx="170" cy="185" rx="72" ry="88" stroke="#5D768B" stroke-width="2.2" fill="rgba(248,239,229,0.0)" opacity="0.6"/>
+        <ellipse cx="170" cy="185" rx="66" ry="82" stroke="#5D768B" stroke-width="0.8" fill="none" opacity="0.35"/>
+
+        <!-- ── AA Monogram ── -->
+        <!-- First A — left leaning -->
+        <text x="140" y="210" font-family="'Monsieur La Doulaise', cursive" font-size="88" fill="#5D768B" opacity="0.90" text-anchor="middle" dominant-baseline="auto">A</text>
+        <!-- Second A — right, slightly lower -->
+        <text x="202" y="218" font-family="'Monsieur La Doulaise', cursive" font-size="80" fill="#5D768B" opacity="0.80" text-anchor="middle" dominant-baseline="auto">A</text>
+
+        <!-- Thin horizontal rule under monogram -->
+        <line x1="120" y1="228" x2="220" y2="228" stroke="#5D768B" stroke-width="0.8" opacity="0.35"/>
+      </svg>
+    </div>
+
+    <!-- Names -->
+    <div class="names-wrap anim" style="animation-delay:0.45s">
+      <span class="name-script">Alexandra Medzihradská</span>
+      <span class="name-amp">&amp;</span>
+      <span class="name-script">Athanasios Soutos</span>
+    </div>
+
+    <!-- Floral divider -->
+    <div class="divider-wrap anim" style="animation-delay:0.58s">
+      <svg viewBox="0 0 560 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Left line -->
+        <line x1="0" y1="14" x2="220" y2="14" stroke="#5D768B" stroke-width="1.2" opacity="0.45"/>
+        <!-- Right line -->
+        <line x1="340" y1="14" x2="560" y2="14" stroke="#5D768B" stroke-width="1.2" opacity="0.45"/>
+        <!-- Center floret -->
+        <circle cx="280" cy="14" r="6" stroke="#5D768B" stroke-width="1.5" fill="none" opacity="0.55"/>
+        <circle cx="280" cy="14" r="2.5" fill="#5D768B" opacity="0.5"/>
+        <!-- Left side leaf sprigs -->
+        <path d="M230,14 Q240,8 248,12 Q244,16 236,16 Q232,14 230,14" fill="#5D768B" opacity="0.45"/>
+        <path d="M258,14 Q266,8 272,12 Q270,18 264,17 Q260,15 258,14" fill="#5D768B" opacity="0.4"/>
+        <!-- Right side leaf sprigs (mirrored) -->
+        <path d="M330,14 Q320,8 312,12 Q316,16 324,16 Q328,14 330,14" fill="#5D768B" opacity="0.45"/>
+        <path d="M302,14 Q294,8 288,12 Q290,18 296,17 Q300,15 302,14" fill="#5D768B" opacity="0.4"/>
+        <!-- Tiny diamond tips on lines -->
+        <polygon points="220,14 226,10 222,14 226,18" fill="#5D768B" opacity="0.4"/>
+        <polygon points="340,14 334,10 338,14 334,18" fill="#5D768B" opacity="0.4"/>
+      </svg>
+    </div>
+
+    <!-- Date & venue -->
+    <div class="date-block anim" style="animation-delay:0.68s">
+      <span class="date-numerals">17 · July · 2027</span>
+      <span class="date-roman">XVII · VII · MMXXVII</span>
+      <span class="venue-name"><a href="https://www.doryssa.gr/our-hotels/doryssa-seaside-resort/" target="_blank" rel="noopener">Doryssa Seaside Resort</a></span>
+      <span class="venue-island">Samos &nbsp;·&nbsp; Greece</span>
+    </div>
+
+    <!-- Friday note -->
+    <p class="friday-text anim" style="animation-delay:0.82s">
+      Celebrations begin on <em>Friday, 16th of July</em> — a welcome evening with family &amp; friends<br>at the square of Agia Marina, behind the resort.
+    </p>
+
+    <!-- Countdown -->
+    <div class="countdown anim" style="animation-delay:0.96s">
+      <div class="cd-unit">
+        <span class="cd-num" id="cd-d">–</span>
+        <span class="cd-label">Days</span>
+      </div>
+      <span class="cd-sep">·</span>
+      <div class="cd-unit">
+        <span class="cd-num" id="cd-h">–</span>
+        <span class="cd-label">Hours</span>
+      </div>
+      <span class="cd-sep">·</span>
+      <div class="cd-unit">
+        <span class="cd-num" id="cd-m">–</span>
+        <span class="cd-label">Minutes</span>
+      </div>
+      <span class="cd-sep">·</span>
+      <div class="cd-unit">
+        <span class="cd-num" id="cd-s">–</span>
+        <span class="cd-label">Seconds</span>
+      </div>
+    </div>
+
+    <!-- Footer stack -->
+    <div class="footer-stack anim" style="animation-delay:1.1s">
+      <p class="footer-note">Formal invitation to follow</p>
+      <p class="travel-note">
+        Charter flights &amp; hotel bookings open closer to the season.<br>
+        The <a href="https://www.doryssa.gr" target="_blank" rel="noopener">Doryssa</a> family offers several hotel options at the same location —
+        from the seaside resort to the village-style hotel — so you can choose what suits you best.
+      </p>
+      <p class="rsvp-nudge">Already know you'll be joining us? Let us know <a href="index.html#rsvp">here</a>.</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const wedding = new Date('2027-07-17T19:00:00+03:00');
+  function tick() {
+    const diff = wedding - new Date();
+    if (diff <= 0) {
+      ['cd-d','cd-h','cd-m','cd-s'].forEach(id => document.getElementById(id).textContent = '00');
+      return;
+    }
+    document.getElementById('cd-d').textContent = String(Math.floor(diff/86400000)).padStart(2,'0');
+    document.getElementById('cd-h').textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>
+</body>
+</html>
