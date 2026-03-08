@@ -6,7 +6,7 @@
 <title>Alexandra & Athanasios — 17 July 2027</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&family=Pinyon+Script&family=Ephesis&family=Cinzel:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&family=Pinyon+Script&family=Ephesis&family=Italianno&family=Cinzel:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet"/>
 <style>
   :root {
     --navy:  #1E2A5E;
@@ -64,7 +64,7 @@
 
   /* Names */
   .names {
-    font-family: 'Ephesis', cursive;
+    font-family: 'Italianno', cursive;
     font-size: clamp(38px,6.5vw,88px);
     color: transparent;
     -webkit-text-stroke: 1px #1E2A5E;
@@ -97,15 +97,15 @@
   /* Buttons */
   .buttons {
     display: flex; flex-direction: column; gap: clamp(14px,2vw,20px);
-    width: 100%; max-width: 380px;
+    width: 100%; max-width: 300px;
     opacity: 0; animation: fadeUp 1s ease 1.1s forwards;
   }
 
   .btn {
     display: block; width: 100%;
-    font-family: var(--roman); font-size: clamp(9px,1.1vw,11px);
-    font-weight: 300; letter-spacing: 0.42em; text-transform: uppercase;
-    text-decoration: none; padding: clamp(16px,2.2vw,22px) 24px;
+    font-family: var(--roman); font-size: clamp(8px,0.9vw,10px);
+    font-weight: 300; letter-spacing: 0.38em; text-transform: uppercase;
+    text-decoration: none; padding: clamp(10px,1.4vw,14px) 20px;
     transition: all 0.3s ease;
   }
   .btn-primary {
@@ -119,9 +119,9 @@
   }
   .btn-secondary:hover { border-color: var(--navy); background: rgba(30,42,94,0.04); transform: translateY(-2px); }
   .btn-label {
-    display: block; font-family: var(--serif); font-size: clamp(11px,1.3vw,14px);
-    font-style: italic; font-weight: 300; letter-spacing: 0.05em;
-    margin-top: 5px; opacity: 0.6; text-transform: none;
+    display: block; font-family: var(--serif); font-size: clamp(10px,1.1vw,12px);
+    font-style: italic; font-weight: 300; letter-spacing: 0.04em;
+    margin-top: 3px; opacity: 0.6; text-transform: none;
   }
 
   @keyframes fadeUp  { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
@@ -151,7 +151,7 @@
     </h1>
 
     <div class="divider">
-      <img src="tattoo.jpeg" alt="tree divider" style="width: clamp(60px,10vw,120px); opacity:0.85; mix-blend-mode: multiply; background-color: #F7EFD8;"/>
+      <img src="tattoo.jpeg" alt="tree divider" style="width: clamp(60px,10vw,120px); mix-blend-mode: multiply;"/>
     </div>
 
     <div class="meta">
