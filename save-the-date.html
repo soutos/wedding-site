@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Save the Date — Alexandra & Athanasios · 17 July 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&family=Cinzel:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Bodoni+Moda:ital,wght@1,400&family=Great+Vibes&family=Corinthia&family=Parisienne&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ivory:       #F7EFD8;
+    --gold:        #D4A017;
+    --gold-pale:   rgba(212,160,23,0.35);
+    --blue:        #7393B3;
+    --navy:        #1E2A5E;
+    --ink:         #2A1C0E;
+    --ink-soft:    #5C4030;
+    --ink-muted:   #9A7C60;
+    --serif:       'Cormorant Garamond', Georgia, serif;
+    --roman:       'Cinzel', serif;
+    --calligraphy: 'Monsieur La Doulaise', cursive;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    width: 100%; height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    background: var(--ivory);
+    font-family: var(--serif);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+
+
+
+  /* Travel note */
+  .travel-note {
+    font-family: var(--serif);
+    font-size: clamp(10px, 1.2vw, 13px);
+    font-weight: 300;
+    font-style: italic;
+    color: #1E2A5E;
+    letter-spacing: 0.04em;
+    line-height: 1.8;
+    margin-top: clamp(10px, 1.5vw, 18px);
+    padding: clamp(10px, 1.5vw, 16px) clamp(16px, 2.5vw, 28px);
+    border-top: 1px solid rgba(115,147,179,0.35);
+    border-bottom: 1px solid rgba(115,147,179,0.35);
+    max-width: 520px;
+    text-align: center;
+    opacity: 0.85;
+  }
+  .travel-note a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(212,160,23,0.4);
+  }
+  .travel-note a:hover { border-color: var(--gold); }
+  /* BIG SAVE THE DATE */
+  .big-std {
+    font-family: 'Monsieur La Doulaise', cursive;
+    font-size: clamp(52px, 9vw, 120px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    margin-bottom: clamp(10px, 2vw, 24px);
+    background: linear-gradient(105deg, #B8860B 15%, #FFD700 35%, #FFF0A0 50%, #FFD700 65%, #B8860B 85%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: goldShimmer 4s linear infinite, fadeUp 1s cubic-bezier(.22,.61,.36,1) 0.1s both;
+  }
+  /* RSVP nudge line */
+  .rsvp-nudge {
+    font-family: var(--serif);
+    font-size: clamp(11px, 1.3vw, 14px);
+    font-weight: 300;
+    font-style: italic;
+    color: #1E2A5E;
+    letter-spacing: 0.04em;
+    margin-top: clamp(14px, 2vw, 22px);
+    opacity: 0.8;
+  }
+  .rsvp-nudge a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(212,160,23,0.5);
+    transition: border-color 0.3s, opacity 0.3s;
+    font-style: italic;
+  }
+  .rsvp-nudge a:hover { border-color: var(--gold); opacity: 1; }
+  /* FRAME */
+  .frame {
+    position: fixed;
+    inset: clamp(12px, 2vw, 24px);
+    pointer-events: none;
+    z-index: 10;
+  }
+  .frame svg { width: 100%; height: 100%; }
+  /* Corner colour washes */
+  .corner-wash {
+    position: fixed;
+    width: clamp(200px, 40vmin, 420px);
+    height: clamp(200px, 40vmin, 420px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .corner-wash--tl { top:0; left:0; background: radial-gradient(ellipse at top left, rgba(115,147,179,0.18) 0%, rgba(115,147,179,0.08) 40%, transparent 70%); }
+  .corner-wash--tr { top:0; right:0; background: radial-gradient(ellipse at top right, rgba(115,147,179,0.18) 0%, rgba(115,147,179,0.08) 40%, transparent 70%); }
+  .corner-wash--bl { bottom:0; left:0; background: radial-gradient(ellipse at bottom left, rgba(115,147,179,0.18) 0%, rgba(115,147,179,0.08) 40%, transparent 70%); }
+  .corner-wash--br { bottom:0; right:0; background: radial-gradient(ellipse at bottom right, rgba(115,147,179,0.18) 0%, rgba(115,147,179,0.08) 40%, transparent 70%); }
+
+  /* Page & card */
+  .page {
+    position: relative;
+    z-index: 1;
+    width: 100vw; height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: clamp(40px, 6vw, 70px) clamp(24px, 5vw, 60px) clamp(20px, 3vw, 40px);
+    max-width: 96vw;
+    width: 100%;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(18px); }
+    to   { opacity:1; transform:none; }
+  }
+  @keyframes fadeIn {
+    from { opacity:0; } to { opacity:1; }
+  }
+  @keyframes goldShimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position:  200% center; }
+  }
+  .anim { opacity:0; animation: fadeUp 1s cubic-bezier(.22,.61,.36,1) forwards; }
+  .anim-fade { opacity:0; animation: fadeIn 1.4s ease forwards; }
+
+  /* Save the Date label */
+  .std-label {
+    font-family: var(--roman);
+    font-size: clamp(9px, 1.1vw, 13px);
+    font-weight: 300;
+    letter-spacing: 0.52em;
+    text-transform: uppercase;
+    margin-bottom: clamp(14px, 2.4vw, 28px);
+  }
+  .gold-shimmer {
+    background: linear-gradient(105deg, #B8860B 20%, #FFD700 38%, #FFF0A0 50%, #FFD700 62%, #B8860B 80%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: goldShimmer 4s linear infinite;
+  }
+
+  /* Names */
+  .names-wrap {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0;
+    margin-bottom: clamp(10px, 1.8vw, 20px);
+  }
+  .name-script {
+    font-family: 'Corinthia', cursive;
+    font-size: clamp(24px, 4vw, 52px);
+    font-weight: 400;
+    color: #1E2A5E;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+  }
+  .name-amp {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(20px, 3vw, 38px);
+    line-height: 1;
+    margin: clamp(8px,1.2vw,16px) 0;
+  }
+
+  /* Divider with columns */
+  .divider-wrap {
+    width: 100%;
+    margin: clamp(10px,1.8vw,20px) 0;
+  }
+
+  /* Date block */
+  .date-wrap {
+    display: flex; flex-direction: column; align-items: center;
+    gap: clamp(5px, 0.9vw, 9px);
+    margin-bottom: clamp(12px, 2vw, 22px);
+  }
+  .date-numerals {
+    font-family: var(--serif);
+    font-size: clamp(15px, 2.0vw, 22px);
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    color: #1E2A5E;
+    line-height: 1;
+  }
+  .location-venue {
+    font-family: var(--serif);
+    font-size: clamp(11px, 1.3vw, 15px);
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    color: #1E2A5E;
+  }
+  .location-venue a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(30,42,94,0.25); transition: border-color 0.3s; }
+  .location-venue a:hover { border-color: #1E2A5E; }
+  .location-island {
+    font-family: var(--serif);
+    font-size: clamp(10px, 1.3vw, 13px);
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    color: #1E2A5E;
+    font-style: italic;
+  }
+
+  /* Friday note */
+  .friday-wrap {
+    margin: clamp(8px,1.5vw,18px) 0 clamp(14px,2.5vw,26px);
+    padding: clamp(11px,1.8vw,17px) clamp(18px,3.5vw,34px);
+    border-top: 1px solid rgba(115,147,179,0.45);
+    border-bottom: 1px solid rgba(115,147,179,0.45);
+    max-width: 500px;
+  }
+  .friday-text {
+    font-family: var(--serif);
+    font-size: clamp(12px,1.5vw,15px);
+    font-weight: 300;
+    font-style: italic;
+    color: #1E2A5E;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+  }
+  .friday-text em {
+    font-style: italic;
+    font-family: var(--serif);
+    font-size: 1em;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: #1E2A5E;
+  }
+
+  /* Countdown */
+  .countdown-wrap { margin-bottom: clamp(20px,3.5vw,36px); }
+  .countdown {
+    display: flex; align-items: flex-start;
+    gap: clamp(14px,2.5vw,28px);
+  }
+  .cd-unit { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .cd-num {
+    font-family: var(--serif);
+    font-size: clamp(26px,4.8vw,56px);
+    font-weight: 300;
+    color: #1E2A5E;
+    line-height: 1; min-width: 2ch; text-align: center;
+    letter-spacing: 0.04em;
+  }
+  .cd-label {
+    font-family: var(--roman);
+    font-size: clamp(7px,0.85vw,9px);
+    font-weight: 300;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #1E2A5E;
+  }
+  .cd-sep {
+    font-family: var(--serif);
+    font-size: clamp(20px,3.5vw,40px);
+    color: var(--blue);
+    opacity: 0.5;
+    padding-top: 2px;
+  }
+
+  /* Footer */
+  .footer-note {
+    font-family: var(--serif);
+    font-size: clamp(9px,1vw,11px);
+    font-weight: 300;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: #1E2A5E;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<!-- Corner washes -->
+<div class="corner-wash corner-wash--tl"></div>
+<div class="corner-wash corner-wash--tr"></div>
+<div class="corner-wash corner-wash--bl"></div>
+<div class="corner-wash corner-wash--br"></div>
+
+<!-- Decorative Frame -->
+<div class="frame">
+  <svg viewBox="0 0 1000 1000" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="60" y1="8" x2="940" y2="8" stroke="#1E2A5E" stroke-width="1.5" opacity="0.7"/>
+    <line x1="60" y1="992" x2="940" y2="992" stroke="#1E2A5E" stroke-width="1.5" opacity="0.7"/>
+    <line x1="8" y1="60" x2="8" y2="940" stroke="#1E2A5E" stroke-width="1.5" opacity="0.7"/>
+    <line x1="992" y1="60" x2="992" y2="940" stroke="#1E2A5E" stroke-width="1.5" opacity="0.7"/>
+    <path d="M 8,60 A 52,52 0 0 1 60,8" stroke="#1E2A5E" stroke-width="1.5" opacity="0.7" fill="none"/>
+    <path d="M 940,8 A 52,52 0 0 1 992,60" stroke="#1E2A5E" stroke-width="1.5" opacity="0.7" fill="none"/>
+    <path d="M 992,940 A 52,52 0 0 1 940,992" stroke="#1E2A5E" stroke-width="1.5" opacity="0.7" fill="none"/>
+    <path d="M 60,992 A 52,52 0 0 1 8,940" stroke="#1E2A5E" stroke-width="1.5" opacity="0.7" fill="none"/>
+    <!-- Middle thick line -->
+    <line x1="66" y1="13" x2="934" y2="13" stroke="#1E2A5E" stroke-width="2.2" opacity="0.55"/>
+    <line x1="66" y1="987" x2="934" y2="987" stroke="#1E2A5E" stroke-width="2.2" opacity="0.55"/>
+    <line x1="13" y1="66" x2="13" y2="934" stroke="#1E2A5E" stroke-width="2.2" opacity="0.55"/>
+    <line x1="987" y1="66" x2="987" y2="934" stroke="#1E2A5E" stroke-width="2.2" opacity="0.55"/>
+    <path d="M 13,66 A 53,53 0 0 1 66,13" stroke="#1E2A5E" stroke-width="2.2" opacity="0.55" fill="none"/>
+    <path d="M 934,13 A 53,53 0 0 1 987,66" stroke="#1E2A5E" stroke-width="2.2" opacity="0.55" fill="none"/>
+    <path d="M 987,934 A 53,53 0 0 1 934,987" stroke="#1E2A5E" stroke-width="2.2" opacity="0.55" fill="none"/>
+    <path d="M 66,987 A 53,53 0 0 1 13,934" stroke="#1E2A5E" stroke-width="2.2" opacity="0.55" fill="none"/>
+    <line x1="72" y1="18" x2="928" y2="18" stroke="#1E2A5E" stroke-width="0.7" opacity="0.35"/>
+    <line x1="72" y1="982" x2="928" y2="982" stroke="#1E2A5E" stroke-width="0.7" opacity="0.35"/>
+    <line x1="18" y1="72" x2="18" y2="928" stroke="#1E2A5E" stroke-width="0.7" opacity="0.35"/>
+    <line x1="982" y1="72" x2="982" y2="928" stroke="#1E2A5E" stroke-width="0.7" opacity="0.35"/>
+    <path d="M 18,72 A 54,54 0 0 1 72,18" stroke="#1E2A5E" stroke-width="0.7" opacity="0.35" fill="none"/>
+    <path d="M 928,18 A 54,54 0 0 1 982,72" stroke="#1E2A5E" stroke-width="0.7" opacity="0.35" fill="none"/>
+    <path d="M 982,928 A 54,54 0 0 1 928,982" stroke="#1E2A5E" stroke-width="0.7" opacity="0.35" fill="none"/>
+    <path d="M 72,982 A 54,54 0 0 1 18,928" stroke="#1E2A5E" stroke-width="0.7" opacity="0.35" fill="none"/>
+  </svg>
+</div>
+
+<!-- Main -->
+<div class="page">
+  <div class="card">
+
+
+
+    <h1 class="big-std">Save the Date</h1>
+
+    <!-- Names -->
+    <div class="names-wrap anim" style="animation-delay:0.32s">
+      <span class="name-script">Alexandra Medzihradská</span>
+      <span class="name-amp gold-shimmer">&amp;</span>
+      <span class="name-script">Athanasios Soutos</span>
+    </div>
+
+    <!-- Columns divider -->
+    <div class="divider-wrap anim" style="animation-delay:0.52s">
+      <svg width="100%" height="32" viewBox="0 0 600 32" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="22" x2="262" y2="22" stroke="#7393B3" stroke-width="1.8" opacity="0.55"/>
+        <line x1="338" y1="22" x2="600" y2="22" stroke="#7393B3" stroke-width="1.8" opacity="0.55"/>
+        <rect x="262" y="23" width="76" height="3.5" rx="0.5" stroke="#7393B3" stroke-width="0.9" fill="none" opacity="0.60"/>
+        <rect x="258" y="26.5" width="84" height="3" rx="0.5" stroke="#7393B3" stroke-width="0.9" fill="none" opacity="0.50"/>
+        <line x1="267.5" y1="23" x2="268" y2="4" stroke="#7393B3" stroke-width="1.8" opacity="0.55" stroke-linecap="butt"/>
+        <line x1="276.5" y1="23" x2="276" y2="4" stroke="#7393B3" stroke-width="1.8" opacity="0.55" stroke-linecap="butt"/>
+        <path d="M 265,4 Q 272,1 279,4" stroke="#7393B3" stroke-width="1.0" fill="none" stroke-linecap="round" opacity="0.60"/>
+        <rect x="263" y="1" width="18" height="3" rx="0.3" stroke="#7393B3" stroke-width="0.9" fill="none" opacity="0.60"/>
+        <line x1="295.5" y1="23" x2="296" y2="0" stroke="#7393B3" stroke-width="1.9" opacity="0.60" stroke-linecap="butt"/>
+        <line x1="304.5" y1="23" x2="304" y2="0" stroke="#7393B3" stroke-width="1.9" opacity="0.60" stroke-linecap="butt"/>
+        <path d="M 293,0 Q 300,-3 307,0" stroke="#7393B3" stroke-width="1.0" fill="none" stroke-linecap="round" opacity="0.65"/>
+        <rect x="291" y="-3" width="18" height="3" rx="0.3" stroke="#7393B3" stroke-width="0.9" fill="none" opacity="0.65"/>
+        <line x1="323.5" y1="23" x2="324" y2="4" stroke="#7393B3" stroke-width="1.8" opacity="0.55" stroke-linecap="butt"/>
+        <line x1="332.5" y1="23" x2="332" y2="4" stroke="#7393B3" stroke-width="1.8" opacity="0.55" stroke-linecap="butt"/>
+        <path d="M 321,4 Q 328,1 335,4" stroke="#7393B3" stroke-width="1.0" fill="none" stroke-linecap="round" opacity="0.60"/>
+        <rect x="319" y="1" width="18" height="3" rx="0.3" stroke="#7393B3" stroke-width="0.9" fill="none" opacity="0.60"/>
+        <rect x="263" y="-3" width="74" height="4" rx="0.4" stroke="#7393B3" stroke-width="1.0" fill="none" opacity="0.55"/>
+      </svg>
+    </div>
+
+    <!-- Date -->
+    <div class="date-wrap anim" style="animation-delay:0.65s">
+      <span class="date-numerals">17th of July 2027</span>
+      <span class="location-venue" style="margin-top:6px;">
+        <a href="https://www.doryssa.gr/our-hotels/doryssa-seaside-resort/" target="_blank" rel="noopener">Doryssa Seaside Resort</a>
+      </span>
+      <span class="location-island">Samos Island, Greece</span>
+    </div>
+
+    <!-- Friday note -->
+    <div class="friday-wrap anim" style="animation-delay:0.95s">
+      <p class="friday-text">
+        Celebrations begin on <em>Friday, 16th of July</em> — we warmly invite you
+        to join us a day early for a welcome evening with family and friends.
+      </p>
+    </div>
+
+    <!-- Countdown -->
+    <div class="countdown-wrap anim" style="animation-delay:1.05s">
+      <div class="countdown">
+        <div class="cd-unit">
+          <span class="cd-num" id="cd-d">–</span>
+          <span class="cd-label">Days</span>
+        </div>
+        <span class="cd-sep">·</span>
+        <div class="cd-unit">
+          <span class="cd-num" id="cd-h">–</span>
+          <span class="cd-label">Hours</span>
+        </div>
+        <span class="cd-sep">·</span>
+        <div class="cd-unit">
+          <span class="cd-num" id="cd-m">–</span>
+          <span class="cd-label">Minutes</span>
+        </div>
+        <span class="cd-sep">·</span>
+        <div class="cd-unit">
+          <span class="cd-num" id="cd-s">–</span>
+          <span class="cd-label">Seconds</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <p class="footer-note anim" style="animation-delay:1.2s">Formal invitation to follow</p>
+    <p class="travel-note anim" style="animation-delay:1.3s">
+      Charter flights &amp; hotel bookings open closer to the season.<br>
+      The <a href="https://www.doryssa.gr" target="_blank" rel="noopener">Doryssa</a> family offers several hotel options at the same location —
+      from the seaside resort to the village-style hotel — so you can choose what suits you best.
+    </p>
+    <p class="rsvp-nudge anim" style="animation-delay:1.35s">If you've already made up your mind about joining us, you can let us know <a href="index.html#rsvp">here</a>.</p>
+
+  </div>
+</div>
+
+<script>
+  const wedding = new Date('2027-07-17T19:00:00+03:00');
+  function tick() {
+    const diff = wedding - new Date();
+    if (diff <= 0) { ['cd-d','cd-h','cd-m','cd-s'].forEach(id => document.getElementById(id).textContent = '00'); return; }
+    document.getElementById('cd-d').textContent = String(Math.floor(diff/86400000)).padStart(2,'0');
+    document.getElementById('cd-h').textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+  }
+  tick(); setInterval(tick, 1000);
+</script>
+</body>
+</html>
