@@ -27,16 +27,16 @@
     background: var(--ivory);
   }
 
-  /* Full page border overlay */
+  /* Floral border overlay */
   .border-overlay {
     position: fixed;
     top: 0; left: 0;
     width: 100vw; height: 100vh;
     pointer-events: none; z-index: 2;
-    background-image: url('border.png');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+    background-image: url('border2.jpg');
+    background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     mix-blend-mode: multiply;
     opacity: 0.9;
   }
@@ -113,7 +113,7 @@
   /* Buttons */
   .buttons {
     display: flex; flex-direction: column; gap: clamp(14px,2vw,20px);
-    width: 100%; max-width: 320px; gap: clamp(28px,4vw,44px); display: flex; flex-direction: column; align-items: center;
+    width: 100%; max-width: 240px; gap: clamp(28px,4vw,44px); display: flex; flex-direction: column; align-items: center;
     opacity: 0; animation: fadeUp 1s ease 1.1s forwards;
   }
 
@@ -125,16 +125,16 @@
     transition: all 0.3s ease;
   }
   .btn-primary {
-    background: var(--gold);
+    background: #dfbe8f;
     color: var(--ivory);
     border: none;
     border-radius: 50px;
-    padding: clamp(12px,1.8vw,18px) clamp(32px,5vw,60px);
-    box-shadow: 0 4px 18px rgba(212,160,23,0.25);
+    padding: clamp(10px,1.4vw,14px) clamp(18px,2.5vw,32px);
+    box-shadow: 0 4px 18px rgba(223,190,143,0.35);
     letter-spacing: 0.25em;
     font-size: clamp(9px,1vw,12px);
   }
-  .btn-primary:hover { background: #c49010; transform: translateY(-2px); box-shadow: 0 6px 24px rgba(212,160,23,0.35); }
+  .btn-primary:hover { background: #b09080; transform: translateY(-2px); box-shadow: 0 6px 24px rgba(200,179,155,0.45); }
   .btn-secondary {
     background: transparent; color: var(--navy);
     border: none;
@@ -184,12 +184,6 @@
 
     <div class="monogram">
       <img src="monogram.png" alt="Alexandra & Athanasios"/>
-    </div>
-
-    <div class="greek-divider">
-      <svg class="wavy-divider" viewBox="0 0 400 20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-        <path d="M0,10 C25,2 50,18 75,10 C100,2 125,18 150,10 C175,2 200,18 225,10 C250,2 275,18 300,10 C325,2 350,18 375,10 C387,5 394,8 400,10" fill="none" stroke="#7393B3" stroke-width="1" stroke-linecap="round"/>
-      </svg>
     </div>
 
     <div class="buttons">
