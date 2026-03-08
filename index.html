@@ -84,16 +84,14 @@
 
   /* Greek divider strip */
   .greek-divider {
-    width: 100vw;
-    margin: clamp(14px,2vw,24px) 0;
+    width: 100%;
+    display: flex; justify-content: center;
+    margin: clamp(10px,1.5vw,20px) 0;
     opacity: 0; animation: fadeIn 1s ease 0.7s forwards;
-    overflow: hidden;
   }
   .greek-divider img {
-    width: 100%;
-    height: clamp(32px,5vw,60px);
-    object-fit: cover;
-    object-position: center;
+    width: clamp(220px,45vw,480px);
+    height: auto;
     mix-blend-mode: multiply;
     display: block;
   }
@@ -110,7 +108,7 @@
   /* Buttons */
   .buttons {
     display: flex; flex-direction: column; gap: clamp(14px,2vw,20px);
-    width: 100%; max-width: 320px; gap: clamp(28px,4vw,44px);
+    width: 100%; max-width: 320px; gap: clamp(28px,4vw,44px); display: flex; flex-direction: column; align-items: center;
     opacity: 0; animation: fadeUp 1s ease 1.1s forwards;
   }
 
@@ -136,12 +134,21 @@
   .btn-secondary:hover { background: rgba(30,42,94,0.04); transform: translateY(-2px); }
   .btn-border {
     display: block;
-    width: 100%; height: 6px;
-    background-image: url('greek-design.jpg');
-    background-size: auto 100%;
-    background-repeat: repeat-x;
+    width: 100%;
+  }
+  .btn-border img {
+    width: 100%;
+    height: auto;
     mix-blend-mode: multiply;
-    opacity: 0.8;
+    opacity: 0.85;
+    display: block;
+  }
+  .btn-border.flip img {
+    transform: scaleY(-1);
+  }
+  .btn-wrap {
+    display: flex; flex-direction: column; align-items: center;
+    width: 100%; max-width: 320px;
   }
   .btn-label {
     display: block; font-family: var(--serif); font-size: clamp(10px,1.1vw,12px);
@@ -176,7 +183,7 @@
     </h1>
 
     <div class="greek-divider">
-      <img src="greek-design.jpg" alt="Greek ornament" />
+      <img src="greek_design.jpg" alt="Greek ornament" />
     </div>
 
     <div class="meta">
@@ -185,16 +192,22 @@
     </div>
 
     <div class="buttons">
-      <span class="btn-border"></span>
-      <a href="save-the-date.html" class="btn btn-primary">
-        Save the Date
-        <span class="btn-label">View & share with your calendar</span>
-      </a>
-      <span class="btn-border"></span>
-      <a href="invitation.html" class="btn btn-secondary">
-        Formal Invitation
-        <span class="btn-label">Schedule, RSVP & all the details</span>
-      </a>
+      <div class="btn-wrap">
+        <span class="btn-border"><img src="greek_design.jpg" alt=""/></span>
+        <a href="save-the-date.html" class="btn btn-primary">
+          Save the Date
+          <span class="btn-label">View & share with your calendar</span>
+        </a>
+        <span class="btn-border flip"><img src="greek_design.jpg" alt=""/></span>
+      </div>
+      <div class="btn-wrap">
+        <span class="btn-border"><img src="greek_design.jpg" alt=""/></span>
+        <a href="invitation.html" class="btn btn-secondary">
+          Formal Invitation
+          <span class="btn-label">Schedule, RSVP & all the details</span>
+        </a>
+        <span class="btn-border flip"><img src="greek_design.jpg" alt=""/></span>
+      </div>
     </div>
 
   </div>
