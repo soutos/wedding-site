@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Save the Date — Alexandra & Athanasios · 17 July 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Corinthia&family=Parisienne&family=Great+Vibes&family=Cinzel:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet"/>
+
+<style>
+:root {
+  --parchment:  #F6EDD8;
+  --parchment2: #EFE3C8;
+  --ink:        #2A1C0E;
+  --ink-soft:   #5C4030;
+  --ink-muted:  #9A7C60;
+  --gold:       #D4A017;
+  --gold-light: #D4A017;
+  --gold-pale:  #D4A017;
+  --gold-deep:  #D4A017;
+  --script:     'Great Vibes', cursive;
+  --calligraphy:'Corinthia', cursive;
+  --roman:      'Cinzel', serif;
+  --serif:      'Cormorant Garamond', Georgia, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { height: 100%; }
+
+body {
+  min-height: 100svh;
+  background: var(--parchment);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-weight: 300;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Parchment texture + vignette */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23p)' opacity='0.055'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 120% 70% at 50% 0%,   rgba(255,250,235,0.85) 0%, transparent 55%),
+    radial-gradient(ellipse 80%  60% at 0%   100%, rgba(215,190,145,0.2) 0%, transparent 55%),
+    radial-gradient(ellipse 80%  60% at 100% 100%, rgba(215,190,145,0.2) 0%, transparent 55%),
+    radial-gradient(ellipse 100% 100% at 50% 50%,  var(--parchment) 0%, var(--parchment2) 100%);
+}
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(ellipse 88% 88% at 50% 50%, transparent 50%, rgba(150,120,70,0.14) 100%);
+}
+
+/* Layout */
+.page {
+  position: relative; z-index: 10;
+  min-height: 100svh;
+  display: flex; align-items: center; justify-content: center;
+  padding: clamp(52px, 7vw, 96px) clamp(32px, 8vw, 120px);
+}
+
+.card {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; width: 100%; max-width: 720px; gap: 0;
+}
+
+/* Corner ornaments — Greek key meander */
+.corner { position: fixed; z-index: 20; }
+.corner svg { width: clamp(120px,33vmin,390px); height: clamp(120px,33vmin,390px); display: block; }
+.corner--tl { top: clamp(10px,1.8vw,20px); left: clamp(10px,1.8vw,20px); }
+.corner--tr { top: clamp(10px,1.8vw,20px); right: clamp(10px,1.8vw,20px); transform: scaleX(-1); }
+.corner--bl { bottom: clamp(10px,1.8vw,20px); left: clamp(10px,1.8vw,20px); transform: scaleY(-1); }
+.corner--br { bottom: clamp(10px,1.8vw,20px); right: clamp(10px,1.8vw,20px); transform: scale(-1,-1); }
+
+/* Monogram */
+.crest-wrap { margin-bottom: clamp(18px,3vw,34px); }
+
+/* Save the date label */
+.std-label {
+  font-family: var(--roman);
+  font-size: clamp(16px, 2.8vw, 34px);
+  font-weight: 300;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: clamp(20px, 3.5vw, 36px);
+}
+
+/* Names */
+.names-wrap {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0; margin-bottom: clamp(6px,1.5vw,16px);
+}
+.name-block {
+  display: flex; flex-direction: column; align-items: center; gap: 1px;
+}
+.name-script {
+  font-family: var(--calligraphy);
+  font-size: clamp(36px, 6.5vw, 84px);
+  font-weight: 400;
+  color: #1E2A5E;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  display: block;
+  white-space: nowrap;
+}
+.name-surname { display: none; }
+.name-amp {
+  font-family: var(--calligraphy);
+  font-size: clamp(34px, 6vw, 78px);
+  color: var(--gold);
+  line-height: 1.05;
+  opacity: 0.82;
+  margin: clamp(0px,0.3vw,4px) 0;
+}
+
+/* Botanical divider */
+.botanical-wrap {
+  width: 100%; display: flex; align-items: center; gap: 14px;
+  margin: clamp(16px,2.8vw,30px) 0;
+}
+.botanical-line {
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, #7393B3, transparent);
+}
+
+/* Date */
+.date-wrap {
+  display: flex; flex-direction: column; align-items: center;
+  gap: clamp(5px,0.9vw,9px); margin-bottom: clamp(12px,2vw,22px);
+}
+.date-day {
+  font-family: var(--serif);
+  font-size: clamp(9px,1.2vw,12px); font-weight: 300;
+  letter-spacing: 0.44em; text-transform: uppercase;
+  color: #1E2A5E;
+}
+.date-numerals {
+  font-family: var(--serif);
+  font-size: clamp(15px, 2.0vw, 22px);
+  font-weight: 300;
+  letter-spacing: 0.12em; color: #1E2A5E; line-height: 1;
+}
+.date-year {
+  font-family: var(--serif);
+  font-size: clamp(9px,1.2vw,12px); font-weight: 300;
+  letter-spacing: 0.52em; color: #1E2A5E;
+}
+
+/* Thin rule */
+.gold-rule {
+  display: flex; align-items: center; gap: 10px;
+  width: clamp(140px,28vw,280px);
+  margin: clamp(12px,2vw,22px) 0;
+}
+.gold-rule-line { flex: 1; height: 1px; background: #7393B3; opacity: 0.6; }
+.gold-rule-diamond {
+  width: 4px; height: 4px; background: #7393B3;
+  transform: rotate(45deg); flex-shrink: 0;
+}
+
+/* Location */
+.location-wrap {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 5px; margin-bottom: clamp(14px,2.5vw,26px);
+}
+.location-church {
+  font-family: var(--serif);
+  font-size: clamp(12px,1.7vw,17px); font-style: italic;
+  font-weight: 300; color: var(--ink-soft); letter-spacing: 0.04em;
+}
+.location-venue {
+  font-family: var(--roman);
+  font-size: clamp(8px,1vw,11px); font-weight: 300;
+  letter-spacing: 0.38em; text-transform: uppercase; color: var(--gold-deep);
+}
+.location-venue a {
+  color: inherit; text-decoration: none;
+  border-bottom: 1px solid rgba(140,108,24,0.28);
+  transition: border-color 0.3s;
+}
+.location-venue a:hover { border-color: var(--gold); }
+.location-island {
+  font-family: var(--serif);
+  font-size: clamp(10px,1.3vw,13px); font-weight: 300;
+  letter-spacing: 0.18em; color: #1E2A5E; font-style: italic;
+}
+
+/* Friday note */
+.friday-wrap {
+  margin: clamp(8px,1.5vw,18px) 0 clamp(14px,2.5vw,26px);
+  padding: clamp(11px,1.8vw,17px) clamp(18px,3.5vw,34px);
+  border-top: 1px solid rgba(115,147,179,0.45);
+  border-bottom: 1px solid rgba(115,147,179,0.45);
+  max-width: 500px;
+}
+.friday-text {
+  font-family: var(--serif);
+  font-size: clamp(12px,1.5vw,15px); font-weight: 300;
+  font-style: italic; color: #1E2A5E;
+  line-height: 1.8; letter-spacing: 0.02em;
+}
+.friday-text em {
+  font-style: italic; font-family: var(--serif);
+  font-size: 1em; letter-spacing: 0.02em;
+  text-transform: none; color: #1E2A5E;
+}
+
+/* Countdown */
+.countdown-wrap { margin-bottom: clamp(20px,3.5vw,36px); }
+.countdown {
+  display: flex; align-items: flex-start;
+  gap: clamp(12px,3vw,40px);
+}
+.cd-unit { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.cd-num {
+  font-family: var(--serif);
+  font-size: clamp(26px,4.8vw,56px); font-weight: 300;
+  color: #1E2A5E; line-height: 1; min-width: 2ch; text-align: center;
+  letter-spacing: 0.04em;
+}
+.cd-label {
+  font-family: var(--roman);
+  font-size: clamp(6px,0.75vw,8px); font-weight: 300;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); opacity: 0.65;
+}
+.cd-sep {
+  font-family: var(--serif);
+  font-size: clamp(18px,3.2vw,40px);
+  color: var(--gold-pale); padding-top: 2px;
+  align-self: flex-start; line-height: 1.15;
+}
+
+/* Footer */
+.footer-note {
+  font-family: var(--roman);
+  font-size: clamp(8px, 1vw, 11px);
+  font-weight: 300;
+  letter-spacing: 0.46em;
+  text-transform: uppercase;
+  color: #1E2A5E;
+  opacity: 1;
+  margin-top: clamp(14px,2.5vw,26px);
+}
+
+/* Animations */
+.anim {
+  opacity: 0; transform: translateY(16px);
+  animation: riseIn 0.9s cubic-bezier(.22,.61,.36,1) forwards;
+}
+.anim-fade { opacity: 0; animation: fadeIn 1.2s ease forwards; }
+@keyframes riseIn { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { to { opacity: 1; } }
+
+/* Gold shimmer */
+@keyframes goldShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.gold-shimmer {
+  background: linear-gradient(
+    105deg,
+    #B8860B 20%,
+    #FFD700 38%,
+    #FFF0A0 50%,
+    #FFD700 62%,
+    #B8860B 80%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 4s linear infinite;
+}
+
+/* Corner colour washes */
+.corner-wash {
+  position: fixed;
+  width: clamp(200px, 40vmin, 420px);
+  height: clamp(200px, 40vmin, 420px);
+  pointer-events: none;
+  z-index: 0;
+}
+.corner-wash--tl { top: 0; left: 0; background: radial-gradient(ellipse at top left, rgba(115,147,179,0.18) 0%, rgba(115,147,179,0.08) 40%, transparent 70%); }
+.corner-wash--tr { top: 0; right: 0; background: radial-gradient(ellipse at top right, rgba(115,147,179,0.18) 0%, rgba(115,147,179,0.08) 40%, transparent 70%); }
+.corner-wash--bl { bottom: 0; left: 0; background: radial-gradient(ellipse at bottom left, rgba(115,147,179,0.18) 0%, rgba(115,147,179,0.08) 40%, transparent 70%); }
+.corner-wash--br { bottom: 0; right: 0; background: radial-gradient(ellipse at bottom right, rgba(115,147,179,0.18) 0%, rgba(115,147,179,0.08) 40%, transparent 70%); }
+</style>
+</head>
+<body>
+
+<!-- Corner ornaments — Greek key meander (single continuous stroke) -->
+<!-- TL: original. TR: scaleX(-1). BL: scaleY(-1). BR: scale(-1,-1). All via CSS. -->
+
+
+
+
+
+<!-- Corner washes -->
+<div class="corner-wash corner-wash--tl"></div>
+<div class="corner-wash corner-wash--tr"></div>
+<div class="corner-wash corner-wash--bl"></div>
+<div class="corner-wash corner-wash--br"></div>
+
+<!-- Main -->
+<div class="page">
+  <div class="card">
+
+
+
+    <!-- Label -->
+
+
+    <p class="std-label anim gold-shimmer" style="animation-delay:0.22s">Save the Date</p>
+
+    <!-- Names -->
+    <div class="names-wrap anim" style="animation-delay:0.38s">
+      <div class="name-block">
+        <span class="name-script">Alexandra Medzihradská</span>
+      </div>
+      <span class="name-amp">&amp;</span>
+      <div class="name-block">
+        <span class="name-script">Athanasios Soutos</span>
+      </div>
+    </div>
+
+
+
+    <!-- Line with Columns centre -->
+    <div class="botanical-wrap anim" style="animation-delay:0.52s; margin: clamp(10px,1.8vw,20px) 0;">
+      <svg width="100%" height="32" viewBox="0 0 600 60" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+        <!-- Left line -->
+        <line x1="0" y1="46" x2="255" y2="46" stroke="#7393B3" stroke-width="1.8" opacity="0.55"/>
+        <!-- Right line -->
+        <line x1="345" y1="46" x2="600" y2="46" stroke="#7393B3" stroke-width="1.8" opacity="0.55"/>
+
+        <!-- ── THREE COLUMNS centred at 300 ── -->
+        <!-- Shared stylobate (base step) -->
+        <rect x="262" y="48" width="76" height="3.5" rx="0.5" stroke="#7393B3" stroke-width="0.9" fill="none" opacity="0.60"/>
+        <!-- Shared stereobate (lower step) -->
+        <rect x="258" y="51.5" width="84" height="3" rx="0.5" stroke="#7393B3" stroke-width="0.9" fill="none" opacity="0.50"/>
+
+        <!-- LEFT COLUMN -->
+        <!-- base -->
+        <rect x="266" y="44" width="12" height="4" rx="0.4" stroke="#7393B3" stroke-width="0.8" fill="none" opacity="0.58"/>
+        <!-- shaft with subtle entasis (slight curve) -->
+        <path d="M 267.5,44 C 267,30 267.5,20 268,10" stroke="#7393B3" stroke-width="1.8" stroke-linecap="butt" opacity="0.55" fill="none"/>
+        <path d="M 276.5,44 C 277,30 276.5,20 276,10" stroke="#7393B3" stroke-width="1.8" stroke-linecap="butt" opacity="0.55" fill="none"/>
+        <!-- capital echinus -->
+        <path d="M 265,10 Q 272,7 279,10" stroke="#7393B3" stroke-width="1.0" fill="none" stroke-linecap="round" opacity="0.60"/>
+        <!-- capital abacus -->
+        <rect x="263" y="7" width="18" height="3" rx="0.3" stroke="#7393B3" stroke-width="0.9" fill="none" opacity="0.60"/>
+
+        <!-- CENTRE COLUMN (slightly taller) -->
+        <rect x="294" y="44" width="12" height="4" rx="0.4" stroke="#7393B3" stroke-width="0.8" fill="none" opacity="0.60"/>
+        <path d="M 295.5,44 C 295,28 295.5,16 296,6" stroke="#7393B3" stroke-width="1.9" stroke-linecap="butt" opacity="0.60" fill="none"/>
+        <path d="M 304.5,44 C 305,28 304.5,16 304,6" stroke="#7393B3" stroke-width="1.9" stroke-linecap="butt" opacity="0.60" fill="none"/>
+        <path d="M 293,6 Q 300,3 307,6" stroke="#7393B3" stroke-width="1.0" fill="none" stroke-linecap="round" opacity="0.65"/>
+        <rect x="291" y="3" width="18" height="3" rx="0.3" stroke="#7393B3" stroke-width="0.9" fill="none" opacity="0.65"/>
+
+        <!-- RIGHT COLUMN -->
+        <rect x="322" y="44" width="12" height="4" rx="0.4" stroke="#7393B3" stroke-width="0.8" fill="none" opacity="0.58"/>
+        <path d="M 323.5,44 C 323,30 323.5,20 324,10" stroke="#7393B3" stroke-width="1.8" stroke-linecap="butt" opacity="0.55" fill="none"/>
+        <path d="M 332.5,44 C 333,30 332.5,20 332,10" stroke="#7393B3" stroke-width="1.8" stroke-linecap="butt" opacity="0.55" fill="none"/>
+        <path d="M 321,10 Q 328,7 335,10" stroke="#7393B3" stroke-width="1.0" fill="none" stroke-linecap="round" opacity="0.60"/>
+        <rect x="319" y="7" width="18" height="3" rx="0.3" stroke="#7393B3" stroke-width="0.9" fill="none" opacity="0.60"/>
+
+        <!-- Entablature / architrave across all three columns -->
+        <rect x="263" y="3" width="74" height="4" rx="0.4" stroke="#7393B3" stroke-width="1.0" fill="none" opacity="0.55"/>
+
+      </svg>
+    </div>
+    <!-- Date -->
+    <div class="date-wrap anim" style="animation-delay:0.65s">
+      <span class="date-numerals">17th of July 2027</span>
+      <span class="location-venue" style="margin-top:6px;">
+        <a href="https://www.doryssa.gr/our-hotels/doryssa-seaside-resort/" target="_blank" rel="noopener">Doryssa Seaside Resort</a>
+      </span>
+      <span class="date-year">Samos Island, Greece</span>
+    </div>
+
+
+
+
+
+    <!-- Friday note -->
+    <div class="friday-wrap anim" style="animation-delay:0.95s">
+      <p class="friday-text">
+        Celebrations begin on <em>Friday, 16th of July</em> — we warmly invite you
+        to join us a day early for a welcome evening with family and friends.
+      </p>
+    </div>
+
+    <!-- Countdown -->
+    <div class="countdown-wrap anim" style="animation-delay:1.05s">
+      <div class="countdown">
+        <div class="cd-unit">
+          <span class="cd-num" id="cd-d">–</span>
+          <span class="cd-label">Days</span>
+        </div>
+        <span class="cd-sep">·</span>
+        <div class="cd-unit">
+          <span class="cd-num" id="cd-h">–</span>
+          <span class="cd-label">Hours</span>
+        </div>
+        <span class="cd-sep">·</span>
+        <div class="cd-unit">
+          <span class="cd-num" id="cd-m">–</span>
+          <span class="cd-label">Minutes</span>
+        </div>
+        <span class="cd-sep">·</span>
+        <div class="cd-unit">
+          <span class="cd-num" id="cd-s">–</span>
+          <span class="cd-label">Seconds</span>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Footer -->
+    <p class="footer-note anim" style="animation-delay:1.2s">
+      Formal invitation to follow
+    </p>
+
+  </div>
+</div>
+
+<script>
+  const wedding = new Date('2027-07-17T19:00:00+03:00');
+  function tick() {
+    const diff = wedding - Date.now();
+    if (diff <= 0) return;
+    document.getElementById('cd-d').textContent = String(Math.floor(diff / 86400000)).padStart(3,'0');
+    document.getElementById('cd-h').textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2,'0');
+  }
+  tick(); setInterval(tick, 1000);
+</script>
+</body>
+</html>
